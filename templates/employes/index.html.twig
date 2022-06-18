@@ -1,0 +1,44 @@
+{% extends "front.html.twig" %}
+{% block titre %} Liste des employés {% endblock %}
+{% block body %}
+
+<main class="row">
+    <h1 class="mt-5">Liste des employés</h1>
+
+        <table class="table table-dark m-5">
+  <thead>
+    <tr>
+                <th style="width:5%">#</th>
+                <th style="width:10%">Prenom</th>
+                <th style="width:10%">Nom</th>
+                <th style="width:10%">Téléphone</th>
+                <th style="width:15%">Email</th>
+                <th style="width:15%">Adresse</th>
+                <th style="width:5%">Salaire</th>
+                <th style="width:10%">Date de naissance</th>
+                <th style="width:20%">Options</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    {% for employe in employes %}
+    <tr>
+      <td>{{employe.id}}</td>
+      <td>{{employe.prenom}}</td>
+      <td>{{employe.nom}}</td>
+      <td>{{employe.telephone}}</td>
+      <td>{{employe.email}}</td>
+      <td>{{employe.adresse}}</td>
+      <td>{{employe.salaire}}</td>
+      <td>{{employe.dtNaissance | date("d/m/Y")}}</td>
+      <td> <a href=" {{ path( "modif_employe",  { "id" : employe.id })}} " class="btn btn-warning">Modifier</a>
+            <a href="{{ path( "suppr_employe",  { "id" : employe.id })}}" class="ms-3 btn btn-danger">Supprimer</a>
+       </td>   
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+</main>
+
+{% endblock %}
